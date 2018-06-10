@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/services.dart';
+import 'package:screentheme/screentheme.dart';
 
 Emotion emotion = Emotion("Calm down..");
 Future<Directory> directory = getApplicationDocumentsDirectory();
@@ -27,6 +28,10 @@ class AssistantState extends State<AssistantPage> {
   @override
   void initState() {
     super.initState();
+
+    ScreenTheme.updateNavigationBarColor(ProjectColors.royal_blue);
+    ScreenTheme.lightNavigationBar();
+    ScreenTheme.lightNavigationBar();
 
     availableCameras().then((cameras) {
       controller = CameraController(cameras[0], ResolutionPreset.low);
@@ -58,7 +63,7 @@ class AssistantState extends State<AssistantPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
-        children: <Widget>[
+        children: [
           Gradient(),
           Headline(),
         ],
