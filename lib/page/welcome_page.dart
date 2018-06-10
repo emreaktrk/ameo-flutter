@@ -72,7 +72,10 @@ class Page extends StatelessWidget {
     return new Column(
       children: [
         Expanded(
-          child: Image.network(""),
+          child: Image.network(
+            "https://raw.githubusercontent.com/emreaktrk/ameo-flutter/master/assets/welcome_1.png",
+            fit: BoxFit.scaleDown,
+          ),
         ),
       ],
     );

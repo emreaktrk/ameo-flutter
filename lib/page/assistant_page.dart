@@ -30,7 +30,7 @@ class AssistantState extends State<AssistantPage> {
     super.initState();
 
     ScreenTheme.updateNavigationBarColor(ProjectColors.royal_blue);
-    ScreenTheme.lightNavigationBar();
+    ScreenTheme.lightStatusBar();
     ScreenTheme.lightNavigationBar();
 
     availableCameras().then((cameras) {
