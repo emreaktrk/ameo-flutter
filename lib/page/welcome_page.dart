@@ -11,6 +11,8 @@ class WelcomePage extends StatefulWidget {
 }
 
 class WelcomeState extends State<WelcomePage> {
+  final PageController controller = PageController();
+
   @override
   void initState() {
     super.initState();
@@ -21,8 +23,21 @@ class WelcomeState extends State<WelcomePage> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+
+    controller.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.arrow_forward, color: ProjectColors.white),
+        backgroundColor: ProjectColors.aquamarine_blue,
+        onPressed: () => controller.nextPage(
+            duration: Duration(milliseconds: 500), curve: Curves.fastOutSlowIn),
+      ),
       backgroundColor: ProjectColors.white,
       body: SafeArea(
         child: Column(
@@ -34,17 +49,15 @@ class WelcomeState extends State<WelcomePage> {
                   "SKIP",
                   style: TextStyle(color: Colors.black),
                 ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    new MaterialPageRoute(
-                        builder: (context) => AssistantPage()),
-                  );
-                },
+                onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => AssistantPage()),
+                    ),
               ),
             ),
             Expanded(
               child: PageView(
+                controller: controller,
                 physics: NeverScrollableScrollPhysics(),
                 children: [
                   Page.create("1", "1"),
@@ -73,7 +86,7 @@ class Page extends StatelessWidget {
       children: [
         Expanded(
           child: Image.network(
-            "https://raw.githubusercontent.com/emreaktrk/ameo-flutter/master/assets/welcome_1.png",
+            "https://raw.githubusercontent.com/emreaktrk/ameo-flutter/master/assets/welcome_$title.png",
             fit: BoxFit.scaleDown,
           ),
         ),
