@@ -1,6 +1,7 @@
 import 'package:ameo/project_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:screentheme/screentheme.dart';
+import 'package:ameo/page/assistant_page.dart';
 
 class WelcomePage extends StatefulWidget {
   @override
@@ -33,7 +34,13 @@ class WelcomeState extends State<WelcomePage> {
                   "SKIP",
                   style: TextStyle(color: Colors.black),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (context) => AssistantPage()),
+                  );
+                },
               ),
             ),
             Expanded(
@@ -62,11 +69,12 @@ class Page extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        title,
-        textScaleFactor: 2.0,
-      ),
+    return new Column(
+      children: [
+        Expanded(
+          child: Image.network(""),
+        ),
+      ],
     );
   }
 }
