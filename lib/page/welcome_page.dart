@@ -24,9 +24,9 @@ class WelcomeState extends State<WelcomePage> {
 
   @override
   void dispose() {
-    super.dispose();
+    controller?.dispose();
 
-    controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -49,10 +49,9 @@ class WelcomeState extends State<WelcomePage> {
                   "SKIP",
                   style: TextStyle(color: Colors.black),
                 ),
-                onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => AssistantPage()),
-                    ),
+                onPressed: () => Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (context) => AssistantPage()),
+                    (Route<dynamic> route) => false),
               ),
             ),
             Expanded(

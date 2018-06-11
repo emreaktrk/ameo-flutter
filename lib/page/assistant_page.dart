@@ -13,7 +13,6 @@ import 'package:flutter/services.dart';
 import 'package:screentheme/screentheme.dart';
 
 Emotion emotion = Emotion("Calm down..");
-Future<Directory> directory = getApplicationDocumentsDirectory();
 
 class AssistantPage extends StatefulWidget {
   @override
@@ -66,10 +65,6 @@ class AssistantState extends State<AssistantPage> {
         children: [
           Gradient(),
           Headline(),
-          AspectRatio(
-            child: CameraPreview(controller),
-            aspectRatio: controller.value.aspectRatio,
-          ),
         ],
       ),
     );
