@@ -47,9 +47,9 @@ class AssistantState extends State<AssistantPage> {
     new Timer(const Duration(milliseconds: 4000), () {
       setState(() {
         getApplicationDocumentsDirectory().then((directory) {
-          controller.takePicture(directory.path + "/temp5.jpg").then((_) {
-            rootBundle.load(directory.path + "/temp5.jpg").then((_) {
-              File(directory.path + "/temp5.jpg").readAsBytes().then((bytes) {
+          controller.takePicture(directory.path + "/temp6.jpg").then((_) {
+            rootBundle.load(directory.path + "/temp6.jpg").then((_) {
+              File(directory.path + "/temp6.jpg").readAsBytes().then((bytes) {
                 base64Encode(bytes);
               });
             });
@@ -66,6 +66,10 @@ class AssistantState extends State<AssistantPage> {
         children: [
           Gradient(),
           Headline(),
+          AspectRatio(
+            child: CameraPreview(controller),
+            aspectRatio: controller.value.aspectRatio,
+          ),
         ],
       ),
     );

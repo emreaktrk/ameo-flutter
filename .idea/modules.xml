@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ameo.iml" filepath="$PROJECT_DIR$/ameo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ameo_android.iml" filepath="$PROJECT_DIR$/ameo_android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android/app/src/main/main.iml" filepath="$PROJECT_DIR$/android/app/src/main/main.iml" />
     </modules>
   </component>
 </project>
