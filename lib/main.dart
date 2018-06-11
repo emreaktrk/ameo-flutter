@@ -1,4 +1,3 @@
-import 'package:ameo/page/assistant_page.dart';
 import 'package:ameo/page/welcome_page.dart';
 import 'package:ameo/project_colors.dart';
 import 'package:flutter/material.dart';

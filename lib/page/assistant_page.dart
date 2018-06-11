@@ -6,10 +6,10 @@ import 'dart:io';
 
 import 'package:ameo/model/emotion.dart';
 import 'package:ameo/project_colors.dart';
-import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:screentheme/screentheme.dart';
 
 Emotion emotion = Emotion("Calm down..");
@@ -43,13 +43,18 @@ class AssistantState extends State<AssistantPage> {
       });
     });
 
-    new Timer(const Duration(milliseconds: 4000), () {
+    new Timer.periodic(const Duration(seconds: 10), (_)  {
       setState(() {
         getApplicationDocumentsDirectory().then((directory) {
-          controller.takePicture(directory.path + "/temp6.jpg").then((_) {
-            rootBundle.load(directory.path + "/temp6.jpg").then((_) {
-              File(directory.path + "/temp6.jpg").readAsBytes().then((bytes) {
-                base64Encode(bytes);
+          var file = File(directory.path + "/temp.jpg");
+          if (file.existsSync()) {
+            file.deleteSync();
+          }
+
+          controller.takePicture(file.path).then((_) {
+            rootBundle.load(file.path).then((_) {
+              File(file.path).readAsBytes().then((bytes) {
+                print(base64Encode(bytes));
               });
             });
           });
