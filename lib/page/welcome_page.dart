@@ -59,9 +59,21 @@ class WelcomeState extends State<WelcomePage> {
                 controller: controller,
                 physics: NeverScrollableScrollPhysics(),
                 children: [
-                  Page.create("1", "1"),
-                  Page.create("2", "2"),
-                  Page.create("3", "3"),
+                  Page.create(
+                      Title("Available", "Anywhere"),
+                      "We know you have a lot to do. So, we make it easy to access your money any time, anywhere",
+                      1),
+                  Page.create(
+                      Title(
+                        "Oh You",
+                        "Can",
+                      ),
+                      "Do what was previously impossible. No more waiting. Just tap and load your earnings.",
+                      2),
+                  Page.create(
+                      Title("Its Yours", "Use It"),
+                      "Pay bills. Fill your tank. Go shopping.\nReally... It's all up to you",
+                      3),
                 ],
               ),
             )
@@ -74,10 +86,11 @@ class WelcomeState extends State<WelcomePage> {
 
 // ignore: must_be_immutable
 class Page extends StatelessWidget {
-  String title = "";
+  Title title;
   String description = "";
+  int position;
 
-  Page.create(this.title, this.description);
+  Page.create(this.title, this.description, this.position);
 
   @override
   Widget build(BuildContext context) {
@@ -85,11 +98,56 @@ class Page extends StatelessWidget {
       children: [
         Expanded(
           child: Image.network(
-            "https://raw.githubusercontent.com/emreaktrk/ameo-flutter/master/assets/welcome_$title.png",
+            "https://raw.githubusercontent.com/emreaktrk/ameo-flutter/master/assets/welcome_$position.png",
             fit: BoxFit.scaleDown,
+          ),
+        ),
+        RichText(
+          textAlign: TextAlign.center,
+          text: TextSpan(
+            children: [
+              TextSpan(
+                text: "${title.first}.\n",
+                style: TextStyle(
+                  color: ProjectColors.egyptian_blue,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30.0,
+                ),
+              ),
+              TextSpan(
+                text: "${title.second}.",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30.0,
+                ),
+              ),
+            ],
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            color: ProjectColors.egyptian_blue,
+            width: MediaQuery.of(context).size.width / 6,
+            height: 4.0,
+          ),
+        ),
+        new Padding(
+          padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 64.0),
+          child: Text(
+            description,
+            textAlign: TextAlign.center,
           ),
         ),
       ],
     );
   }
+}
+
+class Title {
+  Title(this.first, this.second);
+
+  String first = "";
+  String second = "";
 }

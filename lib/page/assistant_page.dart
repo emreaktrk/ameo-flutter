@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:screentheme/screentheme.dart';
+import 'package:dio/dio.dart';
 
 Emotion emotion = Emotion("Calm down..");
 
@@ -43,19 +44,26 @@ class AssistantState extends State<AssistantPage> {
       });
     });
 
-    new Timer.periodic(const Duration(seconds: 10), (_)  {
+    new Timer.periodic(const Duration(seconds: 10), (_) sync* {
+      emotion = new Emotion('feeling');
+
       setState(() {
         getApplicationDocumentsDirectory().then((directory) {
-          var file = File(directory.path + "/temp.jpg");
+          var file = File('${directory.path}/temp.jpg');
           if (file.existsSync()) {
             file.deleteSync();
           }
 
           controller.takePicture(file.path).then((_) {
             rootBundle.load(file.path).then((_) {
-              File(file.path).readAsBytes().then((bytes) {
-                print(base64Encode(bytes));
-              });
+              Dio()
+                  .post(
+                      'https://westus.api.cognitive.microsoft.com/emotion/v1.0/recognize?',
+                      data: FormData.from({
+                        "file": UploadFileInfo(file, "temp.jpg"),
+                      }),
+                      options: Options(headers: {'key1': '', 'key2': ''}))
+                  .then((response) {});
             });
           });
         });

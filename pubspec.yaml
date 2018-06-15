@@ -10,6 +10,9 @@ dependencies:
   camera: ^0.2.1
   path_provider: ^ 0.4.1
   flutter_launcher_icons: ^0.4.0
+  http: ^0.11.3+16
+  dio: ^0.0.14
+  circle_indicator: ^0.0.7
 
 dev_dependencies:
   flutter_test:
@@ -31,9 +34,10 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #  - images/a_dot_burr.jpeg
-  #  - images/a_dot_ham.jpeg
+  assets:
+    - welcome_1.png
+    - welcome_2.png
+    - welcome_3.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
