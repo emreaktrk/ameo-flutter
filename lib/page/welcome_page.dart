@@ -1,7 +1,7 @@
+import 'package:ameo/page/assistant_page.dart';
 import 'package:ameo/project_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:screentheme/screentheme.dart';
-import 'package:ameo/page/assistant_page.dart';
 
 class WelcomePage extends StatefulWidget {
   @override
@@ -97,8 +97,8 @@ class Page extends StatelessWidget {
     return new Column(
       children: [
         Expanded(
-          child: Image.network(
-            "https://raw.githubusercontent.com/emreaktrk/ameo-flutter/master/assets/welcome_$position.png",
+          child: Image.asset(
+            "welcome_$position.png",
             fit: BoxFit.scaleDown,
           ),
         ),

@@ -1,17 +1,16 @@
 library ameo.page.assistant_page.dart;
 
 import 'dart:async';
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:ameo/model/emotion.dart';
 import 'package:ameo/project_colors.dart';
 import 'package:camera/camera.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:screentheme/screentheme.dart';
-import 'package:dio/dio.dart';
 
 Emotion emotion = Emotion("Calm down..");
 
@@ -44,7 +43,7 @@ class AssistantState extends State<AssistantPage> {
       });
     });
 
-    new Timer.periodic(const Duration(seconds: 10), (_) sync* {
+    new Timer.periodic(const Duration(seconds: 10), (_) {
       emotion = new Emotion('feeling');
 
       setState(() {
