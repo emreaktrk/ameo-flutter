@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "132982621918",
+    "firebase_url": "https://ameo-car.firebaseio.com",
+    "project_id": "ameo-car",
+    "storage_bucket": "ameo-car.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:132982621918:android:fd61a76344997a7e",
+        "android_client_info": {
+          "package_name": "com.hackathon.ameo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "132982621918-qv943cno7esa6ql03nu41kg4nbao8g4q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBd220LCD6-eDXJKKd38USsVCZ-iYXkrNk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

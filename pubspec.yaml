@@ -15,6 +15,7 @@ dependencies:
   circle_indicator: ^0.0.7
   tts: ^1.0.1
   audioplayer: ^0.5.0
+  firebase_storage: ^1.0.0
 
 dev_dependencies:
   flutter_test:
@@ -40,6 +41,8 @@ flutter:
     - welcome_1.png
     - welcome_2.png
     - welcome_3.png
+    - emre.jpg
+    - burak.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
