@@ -1,5 +1,6 @@
 import 'package:tts/tts.dart';
 import 'package:audioplayer/audioplayer.dart';
+import 'package:call_number/call_number.dart';
 
 class EmotionExecutor {
   void execute(EmotionStrategy strategy) {
@@ -36,6 +37,6 @@ class ScaredEmotionStrategy extends EmotionStrategy {
 class NeutralEmotionStrategy extends EmotionStrategy {
   @override
   void run() {
-    Tts.speak("You look great today.");
+    CallNumber().callNumber("+905303401905");
   }
 }
