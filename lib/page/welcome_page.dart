@@ -1,3 +1,4 @@
+import 'package:ameo/page/camera_page.dart';
 import 'package:ameo/page/gallery_page.dart';
 import 'package:ameo/project_colors.dart';
 import 'package:flutter/material.dart';
@@ -50,7 +51,7 @@ class WelcomeState extends State<WelcomePage> {
                   style: TextStyle(color: Colors.black),
                 ),
                 onPressed: () => Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(builder: (context) => GalleryPage()),
+                    MaterialPageRoute(builder: (context) => CameraPage()),
                     (Route<dynamic> route) => false),
               ),
             ),

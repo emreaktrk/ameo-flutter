@@ -112,11 +112,11 @@ void takePicture(BuildContext context, CameraController controller) {
 
 Future<File> compress(File file) => getTemporaryDirectory().then((directory) {
       Im.Image original = Im.decodeImage(file.readAsBytesSync());
-      Im.Image smaller = Im.copyResize(original, 512);
+      Im.Image smaller = Im.copyResize(original, 1080);
 
       File compressed = new File(
           '${directory.path}/compressed_${DateTime.now().millisecondsSinceEpoch}.jpg');
-      compressed.writeAsBytesSync(Im.encodeJpg(smaller, quality: 85));
+      compressed.writeAsBytesSync(Im.encodeJpg(smaller, quality: 100));
 
       return Future<File>.value(compressed);
     }).catchError((error) {

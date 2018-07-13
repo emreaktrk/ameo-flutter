@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:ameo/page/assistant_page.dart';
@@ -9,6 +10,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:screentheme/screentheme.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:http/http.dart' as http;
+import 'package:flutter/services.dart' show rootBundle;
 
 class UploadPage extends StatelessWidget {
   final File file;
@@ -39,20 +42,18 @@ class UploadPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (file != null) {
-      upload(file).then((url) {
-        identify(url).then((faceId) {
-          verify(faceId).then((isIdentical) {
-            if (isIdentical) {
-              Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (context) => AssistantPage()),
-                  (Route<dynamic> route) => false);
-            } else {
-              Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(
-                      builder: (context) => ErrorPage("Unknown Driver")),
-                  (Route<dynamic> route) => false);
-            }
-          });
+      stream(file).then((faceId) {
+        verify(faceId).then((isIdentical) {
+          if (isIdentical) {
+            Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(builder: (context) => AssistantPage()),
+                (Route<dynamic> route) => false);
+          } else {
+            Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(
+                    builder: (context) => ErrorPage("Unknown Driver")),
+                (Route<dynamic> route) => false);
+          }
         });
       });
     }
@@ -121,6 +122,26 @@ class Gradient extends StatelessWidget {
       ),
     );
   }
+}
+
+Future<String> stream(File file) async {
+  final client = new http.Client();
+  final request = new http.Request(
+    "POST",
+    Uri.parse(
+      "https://westeurope.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false",
+    ),
+  );
+  request.headers.addAll({
+    "Ocp-Apim-Subscription-Key": "83bb236c22994d039b6a2a37441c2c98",
+    "Content-Type": "application/octet-stream"
+  });
+  request.bodyBytes = file.readAsBytesSync();
+  final response = await client.send(request);
+  final raw = await response.stream.bytesToString();
+  final data = JSON.decode(raw);
+  final faceId = "${data[0]["faceId"]}";
+  return Future<String>.value(faceId);
 }
 
 Future<String> upload(File file) => FirebaseStorage.instance
